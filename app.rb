@@ -9,7 +9,7 @@ get '/categories' do
 end
 
 get '/categories/:id' do
-  Category.where(:id => params['id']).first.to_json
+  Category.where(id: params['id']).first.to_json
 end
 
 post '/categories' do

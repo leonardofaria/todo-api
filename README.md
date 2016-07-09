@@ -12,3 +12,13 @@ Clone, install dependencies, setup database (`config/environments.rb`), start se
 * `bundle install`
 * `rake db:migrate`
 * `ruby ./app.rb -o 0.0.0.0`
+
+## Deployment
+
+This app is ready to use in Heroku.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+## Usage
+
+Open your favourite HTTP client.

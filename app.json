@@ -1,0 +1,15 @@
+{
+  "name": "todo-api",
+  "description": "A simple Sinatra REST API",
+  "keywords": ["sinatra", "api", "activerecord", "reminders"],
+  "repository": "https://github.com/leonardofaria/todo-api",
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ],
+  "env": {
+    "RACK_ENV": "production"
+  },
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  }
+}
