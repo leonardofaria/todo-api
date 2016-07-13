@@ -15,12 +15,15 @@ GEM
     arel (7.0.0)
     concurrent-ruby (1.0.2)
     i18n (0.7.0)
+    json (1.8.3)
     minitest (5.9.0)
     pg (0.18.4)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
     rake (11.2.2)
+    shotgun (0.9.1)
+      rack (>= 1.0)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -28,6 +31,7 @@ GEM
     sinatra-activerecord (2.0.10)
       activerecord (>= 3.2)
       sinatra (~> 1.0)
+    sinatra-cross_origin (0.3.2)
     thread_safe (0.3.5)
     tilt (2.0.5)
     tzinfo (1.2.2)
@@ -38,10 +42,13 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  json
   pg
   rake
+  shotgun
   sinatra
   sinatra-activerecord
+  sinatra-cross_origin
 
 BUNDLED WITH
    1.10.5

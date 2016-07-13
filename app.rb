@@ -1,8 +1,14 @@
 require 'sinatra'
+require 'sinatra/cross_origin'
 require 'sinatra/activerecord'
 require './config/environments'
 require './models/category'
 require './models/task'
+require 'json'
+
+configure do
+  enable :cross_origin
+end
 
 get '/categories' do
   Category.all.to_json
