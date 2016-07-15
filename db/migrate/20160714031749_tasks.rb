@@ -2,8 +2,7 @@ class Tasks < ActiveRecord::Migration
   def up
   	create_table :tasks do |t|
   		t.string :name
-  		t.integer :completed
-  		t.references :category, foreign_key: true
+  		t.references :list, foreign_key: true
   	end
   end
 
