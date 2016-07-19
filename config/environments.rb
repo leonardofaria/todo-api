@@ -7,7 +7,7 @@
 configure :production, :development do
 	set :show_exceptions, true
 
-	db = URI.parse(ENV['DATABASE_URL'] || 'postgres://127.0.0.1/reminders')
+	db = URI.parse(ENV['DATABASE_URL'] || 'postgres://127.0.0.1/todo')
 
 	ActiveRecord::Base.establish_connection(
 		adapter: 	db.scheme == 'postgres' ? 'postgresql' : db.scheme,

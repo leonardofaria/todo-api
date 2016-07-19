@@ -11,6 +11,11 @@ before do
   content_type :json
 end
 
+get '/' do
+  content_type :html
+  send_file './public/index.html'
+end
+
 get '/lists' do
   List.all.to_json(include: :tasks)
 end
