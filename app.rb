@@ -2,38 +2,103 @@ require 'sinatra'
 require 'sinatra/cross_origin'
 require 'sinatra/activerecord'
 require './config/environments'
-require './models/category'
+require './config/cors'
+require './models/list'
 require './models/task'
 require 'json'
 
-configure do
-  enable :cross_origin
+before do
+  content_type :json
 end
 
-get '/categories' do
-  Category.all.to_json
+get '/lists' do
+  List.all.to_json(include: :tasks)
 end
 
-get '/categories/:id' do
-  Category.where(id: params['id']).first.to_json
+get '/lists/:id' do
+  List.where(id: params['id']).first.to_json(include: :tasks)
 end
 
-post '/categories' do
-  if params.has_key?('name')
-    category = Category.create(name: params['name'])
+post '/lists' do
+  list = List.new(params)
+
+  if list.save
+    list.to_json(include: :tasks)
+  else
+    halt 422, list.errors.full_messages.to_json
   end
 end
 
-put '/categories/:id' do
-  category = Category.where(id: params['id']).first
-  if category
-		category.name = params['name'] if params.has_key?('name')
-    category.save
+put '/lists/:id' do
+  list = List.where(id: params['id']).first
+
+  if list
+    list.name = params['name'] if params.has_key?('name')
+		list.color = params['color'] if params.has_key?('color')
+
+    if list.save
+      list.to_json
+    else
+      halt 422, list.errors.full_messages.to_json
+    end
   end
 end
 
-delete '/categories/:id' do
-  Category.where(id: params['id']).destroy_all
+delete '/lists/:id' do
+  list = List.where(id: params['id'])
+
+  if list.destroy_all
+    {success: "ok"}.to_json
+  else
+    halt 500
+  end
+end
+
+get '/tasks' do
+  Task.all.to_json
+end
+
+get '/tasks/:id' do
+  Task.where(id: params['id']).first.to_json
+end
+
+post '/tasks' do
+  task = Task.new(params)
+
+  if task.save
+    task.to_json
+  else
+    halt 422, task.errors.full_messages.to_json
+  end
+end
+
+put '/tasks/:id' do
+  task = Task.where(id: params['id']).first
+
+  if task
+    task.name = params['name'] if params.has_key?('name')
+
+    if task.save
+      task.to_json
+    else
+      halt 422, task.errors.full_messages.to_json
+    end
+  end
+end
+
+delete '/tasks/:id' do
+  task = Task.where(id: params['id'])
+
+  if task.destroy_all
+    {success: "ok"}.to_json
+  else
+    halt 500
+  end
+end
+
+get '/refresh' do
+  # Clean the database and create the initial data
+  load './db/seeds.rb'
 end
 
 after do
