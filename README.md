@@ -64,7 +64,10 @@ Deleting a list will also deleted all its tasks
 
 *****
 
-P.S.: If you don't like cURL you can use [httpie](https://github.com/jkbrzt/httpie) or [Postman](https://www.getpostman.com/)
+### Notes
+
+* If you want to restore the initial data go to http://localhost:9393/refresh
+* If you don't like cURL you can use [httpie](https://github.com/jkbrzt/httpie) or [Postman](https://www.getpostman.com/):
 
 #### httpie
 
@@ -73,3 +76,9 @@ P.S.: If you don't like cURL you can use [httpie](https://github.com/jkbrzt/http
 #### Postman
 
 ![Postman](https://raw.github.com/leonardofaria/todo-api/master/public/postman.png)
+
+
+## Group
+
+* Leonardo Faria
+* Sabrina Silveira
