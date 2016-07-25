@@ -24,41 +24,41 @@ This app is ready to use in Heroku.
 
 Open your favourite HTTP client and start your requests.
 
-### Create a list
+### Create a list (post)
 
 `curl -d "name=test&color=cccccc" http://localhost:9393/lists`
 
 `name` and `color` are required parameters. `color` must be a hexadecimal color (ex.: cccccc)
 
-### Read all lists
+### Read all lists (get)
 
 `curl http://localhost:9393/lists`
 
-### Update a list
+### Update a list (put)
 
 `curl -X PUT -d "name=test&color=cccccc" http://localhost:9393/lists/:id`
 
-### Delete a list
+### Delete a list (delete)
 
 `curl -X DELETE http://localhost:9393/lists/:id`
 
 Deleting a list will also deleted all its tasks
 
-### Create a task
+### Create a task (post)
 
 `curl -d "name=task&list_id=1" http://localhost:9393/tasks`
 
 `name` and `list_id` are required parameters.
 
-### Read all tasks
+### Read all tasks (get)
 
 `curl http://localhost:9393/tasks`
 
-### Update a task
+### Update a task (update)
 
 `curl -X PUT -d "name=test&list_id=1" http://localhost:9393/tasks/:id`
 
-### Delete a task
+### Delete a task (delete)
 
 `curl -X DELETE http://localhost:9393/tasks/:id`
 
